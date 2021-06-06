@@ -1,0 +1,229 @@
+/* Files */
+
+@import "general";
+@import "header";
+@import "search";
+@import "pagination";
+
+/* Jumbotron styles for all pages except index */
+
+.title-jumbotron {
+    width: 100%;
+    min-height: 140px;
+    background-color: #f5f8fa;
+    height: 140px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 75px;
+    .parallax-text {
+        position: absolute;
+        top: 45px;
+        width: 100%;
+        text-align: center;
+        @media screen and (max-width: 800px) {
+            top: 50px;
+        }
+        @media screen and (max-width: 600px) {
+            top: 55px;
+        }
+        @media screen and (max-width: 460px) {
+            top: 57px;
+        }
+        h1 {
+            font-weight: normal;
+            font-size: 3.9rem;
+            margin: 0 30px;
+            padding: 0;
+            @media screen and (max-width: 800px) {
+                font-size: 3.5rem;
+            }
+            @media screen and (max-width: 600px) {
+                font-size: 2.5rem;
+            }
+            @media screen and (max-width: 460px) {
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+/* News section */
+
+.news {
+    width: 100%;
+    h1 {
+        text-align: center;
+        font-weight: normal;
+        margin-top: 50px;
+    }
+    .news-wrapper {
+        width: 90%;
+        margin: 60px auto;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 60px 30px;
+        justify-content: space-between;
+        @media screen and (max-width: 1250px) {
+            grid-template-columns: auto auto;
+        }
+        @media screen and (max-width: 650px) {
+            grid-template-columns: auto;
+        }
+        .item {
+            width: 100%;
+            border-radius: 0 0 5px 5px;
+            border: 1px solid #f5f8fa;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06),
+                0 1px 2px rgba(0, 0, 0, 0.12);
+            .image-holder {
+                overflow: hidden;
+                border-radius: 5px 5px 0 0;
+                position: relative;
+                display: block;
+                background: #cccccc;
+                a {
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                        object-fit: cover;
+                        transition: transform 0.5s ease-in-out;
+                    }
+                    .image-overlay {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    &:hover {
+                        img {
+                            transform: scale(1.15);
+                        }
+                        .image-overlay {
+                            background-color: rgba(0, 0, 0, 0.4);
+                            transition: background-color 0.5s ease-in-out;
+                        }
+                    }
+                    &:not(:hover) {
+                        .image-overlay {
+                            background-color: transparent;
+                            transition: background-color 0.5s ease-in-out;
+                        }
+                    }
+                }
+            }
+            .item-content {
+                margin: 0 20px;
+                a {
+                    color: #000;
+                    h6 {
+                        margin: 10px 0 0 0;
+                    }
+                }
+                p {
+                    margin: 5px 0;
+                    i {
+                        margin-right: 15px;
+                        color: #4e4e4e;
+                    }
+                }
+                p.item-blog-author {
+                    margin: 15px 0;
+                    i {
+                        margin: 0 10px 0 0;
+                    }
+                    a {
+                        color: #000;
+                        &:hover {
+                            color: #e71d43;
+                            transition: all 0.3s ease-in-out;
+                        }
+                        &:not(:hover) {
+                            color: #000;
+                            transition: all 0.3s ease-in-out;
+                        }
+                    }
+                }
+                p.item-blog-text {
+                    color: #4e4e4e;
+                }
+                p.item-blog-comment {
+                    margin-left: 35px;
+                }
+                p.item-blog-date {
+                    margin-left: 35px;
+                }
+                .blog-line {
+                    margin: 20px 20px 20px 0;
+                    background-color: #dedede;
+                    width: 100%;
+                    height: 2px;
+                }
+                .item-blog-bottom {
+                    a.button {
+                        border: 2px solid #e71d43;
+                        padding: 14px 22px 12px 22px;
+                        display: inline-block;
+                        margin: 0 0 20px 0;
+                        font-size: 1.3rem;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        border-radius: 3px;
+                        background-color: transparent;
+                        color: #000;
+                        &:hover {
+                            background-color: #e71d43;
+                            color: #fff;
+                            border: 2px solid #e71d43;
+                            transition: all 0.3s ease-in-out;
+                        }
+                        &:not(:hover) {
+                            background-color: transparent;
+                            color: #000;
+                            transition: all 0.3s ease-in-out;
+                        }
+                    }
+                    p {
+                        float: right;
+                        padding: 14px 0;
+                        a {
+                            color: #0633ff;
+                            font-weight: 600;
+                            &:hover {
+                                color: #e71d43;
+                                transition: all 0.3s ease-in-out;
+                            }
+                            &:not(:hover) {
+                                color: #0633ff;
+                                transition: all 0.3s ease-in-out;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Footer styles */
+
+footer#dashboard-footer {
+    min-height: initial;
+    width: 100%;
+    text-align: center;
+    background-color: #000;
+    .dashboard-footer-wrapper {
+        width: 90%;
+        margin: auto;
+        p {
+            font-size: 1.6rem;
+            color: #9c9c9c;
+            padding: 15px 0;
+            a {
+                color: #e71d43;
+            }
+        }
+    }
+}
