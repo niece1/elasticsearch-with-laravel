@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Image;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     
     /**
      * The attributes that aren't mass assignable.
@@ -22,6 +25,22 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    
+    /**
+     * Get image associated with specified post
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+    
+    /**
+     * Get category record associated with specified post
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
     
     /**

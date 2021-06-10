@@ -34,8 +34,8 @@
                     <tr>
                         <td>{{ $post->id }}</td>
                         <td>
-                            @if ($post->photo)
-                            <img src="{{ asset('storage/' . $post->image_path) }}" height="60" width="90" alt="Photo">
+                            @if ($post->image)
+                            <img src="{{ asset('storage/' . $post->image->path) }}" height="60" width="90" alt="Image">
                             @endif
                         </td>
                         <td>
@@ -43,7 +43,7 @@
                         </td>
                         <td>
                             @if ($post->category)
-                            {{ $post->category }}
+                            {{ $post->category>title }}
                             @endif
                         </td>
                         <td>

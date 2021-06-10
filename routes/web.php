@@ -23,4 +23,10 @@ Route::get('search', [SearchController::class, 'search'])->name('search');
 //Admin
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('posts', PostController::class);
+    //Expunge Image
+    Route::get('delete/{id}', ImageController::class, 'delete')->name('image.delete');
+    //Trash
+    Route::get('trash', TrashController::class, 'index')->name('trash.index');
+    Route::delete('delete/{id}', TrashController::class, 'destroy')->name('trash.destroy');
+    Route::post('restore/{id}', TrashController::class, 'restore')->name('trash.restore');
 });

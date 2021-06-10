@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Services\SlugService;
+use App\Services\PostPhotoUploadService;
 
 class PostController extends Controller
 {
@@ -14,7 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(15);
+        $posts = Post::with(['user'])
+                ->orderBy('id', 'desc')
+                ->paginate(15);
         return view('admin.index', compact('posts'));
     }
 
@@ -25,7 +31,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $post = new Post();
+        $categories = Category::all();
+        return view('admin.create', compact('post', 'categories'));
     }
 
     /**
@@ -34,9 +42,15 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(
+            StorePostRequest $request,
+            SlugService $slugService,
+            PostPhotoUploadService $postPhotoUploadService
+    ) {
+        $post = Post::create($request->all());
+        $slugService->generateSlug($request, $post);
+        $postPhotoUploadService->store($request, $post);
+        return redirect('admin/posts');
     }
 
     /**
@@ -53,34 +67,55 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $posts = Post::all();
+        return view('admin.edit', compact('post', 'posts'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(
+            UpdatePostRequest $request,
+            Post $post,
+            SlugService $slugService,
+            PostPhotoUploadService $postPhotoUploadService
+    ) {
+        $post->update($request->all());
+        $this->storeImage($post);
+        return redirect('admin/posts');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destryoy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect('admin/posts');
+    }
+    
+    /**
+     * Remove the specified resource to trash.
+     *
+     * @param  \App\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Post $post)
+    {
+        PostRepository::removeToTrash($post);
+
+        return redirect('admin/posts');
     }
 }
