@@ -13,11 +13,13 @@ class Post extends Model
     use SoftDeletes;
     
     /**
-     * The attributes that aren't mass assignable.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $guarded = [];
+    protected $fillable = [
+        'title', 'body', 'slug', 'user_id', 'category_id', 'photo_source', 'time_to_read',
+    ];
     
     /**
      * Get user record associated with specified post

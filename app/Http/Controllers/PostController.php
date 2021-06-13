@@ -7,7 +7,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Services\SlugService;
-use App\Services\PostPhotoUploadService;
+use App\Services\PostImageUploadService;
 
 class PostController extends Controller
 {
@@ -45,11 +45,11 @@ class PostController extends Controller
     public function store(
             StorePostRequest $request,
             SlugService $slugService,
-            PostPhotoUploadService $postPhotoUploadService
+            PostImageUploadService $postImageUploadService
     ) {
         $post = Post::create($request->all());
         $slugService->generateSlug($request, $post);
-        $postPhotoUploadService->store($request, $post);
+        $postImageUploadService->store($request, $post);
         return redirect('admin/posts');
     }
 
@@ -72,8 +72,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $posts = Post::all();
-        return view('admin.edit', compact('post', 'posts'));
+        $categories = Category::all();
+        return view('admin.edit', compact('post', 'categories'));
     }
 
     /**
@@ -87,22 +87,11 @@ class PostController extends Controller
             UpdatePostRequest $request,
             Post $post,
             SlugService $slugService,
-            PostPhotoUploadService $postPhotoUploadService
+            PostImageUploadService $postImageUploadService
     ) {
         $post->update($request->all());
-        $this->storeImage($post);
-        return redirect('admin/posts');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destryoy(Post $post)
-    {
-        $post->delete();
+        $slugService->generateSlug($request, $post);
+        $postImageUploadService->store($request, $post);
         return redirect('admin/posts');
     }
     
@@ -114,8 +103,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        PostRepository::removeToTrash($post);
-
+        $post->delete();
         return redirect('admin/posts');
     }
 }

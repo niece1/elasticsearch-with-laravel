@@ -33,7 +33,10 @@
                 <nav>
                     <ul>
                         <li class="sub-menu">
-                            <a href="/">Home</a>
+                            <a href="/admin/posts">Posts</a>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="/admin/trash">Trash</a>
                         </li>
                         <li class="sub-menu">
                             <a href="/">News</a>
@@ -59,8 +62,8 @@
         <footer id="dashboard-footer">
             <div class="dashboard-footer-wrapper">
                 <p>
-                    <a href="{{ url('/') }}">elasticsearch-with-laravel. </a>
-                    Made with love for a better web.
+                    <a href="{{ url('/') }}">elasticsearch-with-laravel </a>
+                    Made with love for a better web
                 </p>
             </div>
         </footer>

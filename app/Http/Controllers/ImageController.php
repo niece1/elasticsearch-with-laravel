@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
+use App\Models\Image;
 
 class ImageController extends Controller
 {
@@ -15,7 +15,6 @@ class ImageController extends Controller
     public function delete($id, Image $image)
     {
         $image->deleteImage($id);
-
         return redirect()->back();
     }
 }

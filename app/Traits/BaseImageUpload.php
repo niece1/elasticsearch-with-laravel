@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Image;
+use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
 
 trait BaseImageUpload

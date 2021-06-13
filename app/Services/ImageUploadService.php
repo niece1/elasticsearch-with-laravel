@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Image;
+use App\Models\Image;
 use Illuminate\Http\Request;
-use App\Traits\BaseImageUpload;
+use App\Traits\DeleteImage;
 
 /**
  * Save file to \storage\app\public\images
@@ -13,8 +13,8 @@ use App\Traits\BaseImageUpload;
  */
 abstract class ImageUploadService
 {
-    use BaseImageUpload;
-
+    use DeleteImage;
+    
     /**
      * Model instance.
      *
@@ -31,7 +31,7 @@ abstract class ImageUploadService
     {
         $this->model = app($this->getModelClass());
     }
-
+    
     /*
      * Get model namespace
      *
@@ -51,10 +51,7 @@ abstract class ImageUploadService
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('images', 'public');
             if ($model->image) {
-                $image = $this->getImage($model->image->id);
-                $this->deleteImageFromStorageFolder($image);
-                $image->path = $path;
-                $model->image()->save($image);
+                $this->deleteImage($model->image->id);
             }
             $image = new Image();
             $image->path = $path;

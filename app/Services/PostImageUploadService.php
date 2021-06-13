@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Post;
+use App\Models\Post;
 
 /**
  * Save file to \storage\app\public\photos
  *
  * @author Volodymyr Zhonchuk
  */
-final class PostPhotoUploadService extends PhotoUploadService
+final class PostImageUploadService extends ImageUploadService
 {
     /*
      * Get post namespace

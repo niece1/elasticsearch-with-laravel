@@ -74,8 +74,8 @@
         <footer id="dashboard-footer">
             <div class="dashboard-footer-wrapper">
                 <p>
-                    <a href="{{ url('/') }}">elasticsearch-with-laravel. </a>
-                    Made with love for a better web.
+                    <a href="{{ url('/') }}">elasticsearch-with-laravel </a>
+                    Made with love for a better web
                 </p>
             </div>
         </footer>

@@ -259,6 +259,25 @@
                     height: 150px;
                     display: block;
                 }
+                .post-image-overlay {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 100%;
+                    height: 100%;
+                    a.action-button-delete {
+                        margin: 10px 0 0 10px;
+                        color: #fff;
+                        background-color: #e71d43;
+                        padding: 2px 5px;
+                        border-radius: 5px;
+                        display: inline-block;
+                        font-size: 1.6rem;
+                        &:hover {
+                            background-color: #d9534f;
+                        }
+                    }
+                }
             }
             label.radio-container {
                 display: block;
