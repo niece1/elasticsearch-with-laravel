@@ -78,3 +78,11 @@ services:
         entrypoint: ['npm']
         networks:
             - laravel
+            
+    elasticsearch:
+      image: elasticsearch:7.13.1
+      environment:
+          - "discovery.type=single-node"
+          - "bootstrap.memory_lock=true"
+      ports:
+          - "9200:9200"

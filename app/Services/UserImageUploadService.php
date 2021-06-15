@@ -9,7 +9,7 @@ use App\Models\User;
  *
  * @author Volodymyr Zhonchuk
  */
-final class UserPhotoUploadService extends PhotoUploadService
+final class UserImageUploadService extends ImageUploadService
 {
     /*
      * Get user namespace

@@ -3,9 +3,29 @@
 namespace App\Observers;
 
 use App\Models\Post;
+use Elasticsearch\Client;
+use App\Jobs\AddElasticsearchIndexJob;
+use App\Jobs\DeleteElasticsearchIndexJob;
 
 class PostObserver
 {
+    /**
+     * Elasticsearch client instance.
+     *
+     * @var object
+     */
+    private $client;
+
+    /**
+     * Create a new Client instance.
+     *
+     * @return void
+     */
+    public function __construct(Client $client)
+    {
+        $this->client = $client;
+    }
+    
     /**
      * Handle the Post "created" event.
      *
@@ -14,7 +34,9 @@ class PostObserver
      */
     public function created(Post $post)
     {
-        //
+        if ($post->published) {
+            dispatch(new AddElasticsearchIndexJob($post));
+        }
     }
 
     /**
@@ -25,7 +47,10 @@ class PostObserver
      */
     public function updated(Post $post)
     {
-        //
+        if ($post->published) {
+            return dispatch(new AddElasticsearchIndexJob($post));
+        }
+        dispatch(new DeleteElasticsearchIndexJob($post));
     }
 
     /**
@@ -36,7 +61,9 @@ class PostObserver
      */
     public function deleted(Post $post)
     {
-        //
+        if ($post->published) {
+            dispatch(new DeleteElasticsearchIndexJob($post));
+        }
     }
 
     /**
@@ -47,7 +74,9 @@ class PostObserver
      */
     public function restored(Post $post)
     {
-        //
+        if ($post->published) {
+            dispatch(new AddElasticsearchIndexJob($post));
+        }
     }
 
     /**

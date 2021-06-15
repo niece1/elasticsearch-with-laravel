@@ -3,13 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/test/laravel/elasticsearch-with-laravel/resources/views/admin/includes/form.blade.php</file>
-            <file>file:/home/test/laravel/elasticsearch-with-laravel/resources/views/admin/index.blade.php</file>
-            <file>file:/home/test/laravel/elasticsearch-with-laravel/resources/sass/app.scss</file>
-            <file>file:/home/test/laravel/elasticsearch-with-laravel/resources/views/admin/trash/index.blade.php</file>
+            <file>file:/home/test/laravel/elasticsearch-with-laravel/docker-compose.yml</file>
             <file>file:/home/test/laravel/elasticsearch-with-laravel/routes/web.php</file>
-            <file>file:/home/test/laravel/elasticsearch-with-laravel/app/Http/Controllers/PostController.php</file>
-            <file>file:/home/test/laravel/elasticsearch-with-laravel/app/Http/Controllers/TrashController.php</file>
         </group>
     </open-files>
 </project-private>
