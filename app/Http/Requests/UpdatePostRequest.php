@@ -28,6 +28,7 @@ class UpdatePostRequest extends FormRequest
             'body' => 'required',
             'time_to_read' => 'required',
             'image_source' => 'max:200',
+            'published' => '',
             'category_id' => 'required',
             'image' => 'sometimes|file|mimes:jpeg,png|max:5000',
         ];

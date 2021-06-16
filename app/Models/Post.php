@@ -18,7 +18,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'body', 'slug', 'user_id', 'category_id', 'photo_source', 'time_to_read',
+        'title', 'body', 'slug', 'user_id', 'published', 'category_id', 'photo_source', 'time_to_read',
     ];
     
     /**
@@ -73,5 +73,15 @@ class Post extends Model
     public function getThreeDotsAttribute()
     {
         return strlen(strip_tags(html_entity_decode($this->body))) > 85 ? " ..." : "";
+    }
+    
+    /**
+     * Add 'yes' if true and 'no' if false
+     *
+     * @return string
+     */
+    public function getIfPublishedAttribute()
+    {
+        return $this->published == 0 ? 'No' : 'Yes';
     }
 }

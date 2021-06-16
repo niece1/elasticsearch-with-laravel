@@ -692,55 +692,6 @@ span.page-link {
   background: #fff;
   border-radius: 50%;
 }
-.dashboard form.create-update .form-wrapper .attach-role {
-  margin-bottom: 10px;
-}
-.dashboard form.create-update .form-wrapper .checkbox-container {
-  position: relative;
-  margin: 4px 0;
-  padding-left: 35px;
-  font-size: 1.4rem;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.dashboard form.create-update .form-wrapper .checkbox-container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-.dashboard form.create-update .form-wrapper .checkbox-container input:checked ~ .checkmark {
-  background-color: #e71d43;
-}
-.dashboard form.create-update .form-wrapper .checkbox-container input:checked ~ .checkmark:after {
-  display: block;
-}
-.dashboard form.create-update .form-wrapper .checkbox-container .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 1.8rem;
-  width: 1.8rem;
-  background-color: #cccccc;
-}
-.dashboard form.create-update .form-wrapper .checkbox-container .checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-.dashboard form.create-update .form-wrapper .checkbox-container .checkmark:after {
-  left: 5px;
-  top: 1px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  transform: rotate(45deg);
-}
 
 /* Jumbotron styles for all pages except index */
 .title-jumbotron {

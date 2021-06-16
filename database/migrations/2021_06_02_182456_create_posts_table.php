@@ -18,8 +18,8 @@ class CreatePostsTable extends Migration
             $table->string('title')->unique();
             $table->longText('body');
             $table->string('slug')->nullable();
+            $table->boolean('published')->default(false);
             $table->unsignedBigInteger('time_to_read');
-            $table->string('category');
             $table->string('image_source')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

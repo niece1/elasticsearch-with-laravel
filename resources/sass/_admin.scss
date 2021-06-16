@@ -323,52 +323,6 @@
                 background: #fff;
                 border-radius: 50%;
             }
-            .attach-role {
-                margin-bottom: 10px;
-            }
-            .checkbox-container {
-                position: relative;
-                margin: 4px 0;
-                padding-left: 35px;
-                font-size: 1.4rem;
-                cursor: pointer;
-                user-select: none;
-                input {
-                    position: absolute;
-                    opacity: 0;
-                    cursor: pointer;
-                    height: 0;
-                    width: 0;
-                    &:checked ~ .checkmark {
-                        background-color: #e71d43;
-                        &:after {
-                            display: block;
-                        }
-                    }
-                }
-                .checkmark {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    height: 1.8rem;
-                    width: 1.8rem;
-                    background-color: #cccccc;
-                    &:after {
-                        content: "";
-                        position: absolute;
-                        display: none;
-                    }
-                }
-            }
-            .checkbox-container .checkmark:after {
-                left: 5px;
-                top: 1px;
-                width: 5px;
-                height: 10px;
-                border: solid white;
-                border-width: 0 3px 3px 0;
-                transform: rotate(45deg);
-            }
         }
     }
 }

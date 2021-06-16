@@ -27,6 +27,7 @@
                         <th>ID</th>
                         <th>Image</th>
                         <th>Title</th>
+                        <th>Published</th>
                         <th>Category</th>
                         <th></th>
                     </tr>
@@ -41,9 +42,10 @@
                         <td>
                             <a href="#">{{ $post->title }}</a>
                         </td>
+                        <td>{{ $post->if_published }}</td>
                         <td>
                             @if ($post->category)
-                            {{ $post->category>title }}
+                            {{ $post->category->title }}
                             @endif
                         </td>
                         <td>

@@ -18,10 +18,11 @@
     <div class="news-wrapper">
         @forelse ($posts as $post)
         <div class="item">
-            @if ($post->photo)
+            @if ($post->image)
             <div class="image-holder">
                 <a href="#">
-                    <img class="lazyload" src="{{ asset('storage/' . $post->photo_path) }}" alt="Photo">
+                    <img src="{{ asset('storage/' . $post->image->path) }}" alt="Image">
+                    <div class="image-overlay"></div>
                 </a>
             </div>
             @endif
@@ -53,7 +54,7 @@
                     @if ($post->category)
                     <p>
                         <i class="fas fa-tags"></i>
-                        <a href="#">{{ $post->category }}</a>
+                        <a href="#">{{ $post->category->title }}</a>
                     </p>
                     @endif
                 </div>

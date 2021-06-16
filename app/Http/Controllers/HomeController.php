@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
 
 class HomeController extends Controller
@@ -14,7 +13,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(24);
+        $posts = Post::with(['image', 'category', 'user'])
+                ->where('published', 1)
+                ->orderBy('id', 'desc')
+                ->paginate(12);
         return view('frontend.index', compact('posts'));
     }
 }

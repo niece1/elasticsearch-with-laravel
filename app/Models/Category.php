@@ -10,11 +10,13 @@ class Category extends Model
     use HasFactory;
     
     /**
-     * The attributes that aren't mass assignable.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $guarded = [];
+    protected $fillable = [
+        'title'
+    ];
     
     /**
      * Get posts associated with specified category

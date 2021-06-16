@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Contracts\SearchRepositoryContract;
 
 class SearchController extends Controller
@@ -33,7 +32,6 @@ class SearchController extends Controller
     public function search()
     {
         $posts = $this->searchRepository->search(request('keyword'));
-
         return view('frontend.search', compact('posts'));
     }
 }

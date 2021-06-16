@@ -21,7 +21,7 @@ class SqlSearchRepository implements SearchRepositoryContract
     public function search($keyword)
     {
         return Post::query()
-            ->with(['image', 'category'])
+            ->with(['image', 'category', 'user'])
             ->where('published', 1)
             ->where('title', 'like', "%{$keyword}%")
             ->orWhere('body', 'like', "%$keyword%")
