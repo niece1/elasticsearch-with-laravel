@@ -79,7 +79,7 @@ class ElasticSearchRepository implements SearchRepositoryContract
     {
         $ids = Arr::pluck($items['hits']['hits'], '_id');
 
-        return Post::with(['image', 'category', 'user', 'comments'])
+        return Post::with(['image', 'category', 'user'])
                 ->findMany($ids)
                 ->sortBy(fn ($post) => array_search($post->getKey(), $ids));
     }

@@ -2,6 +2,7 @@ version: '3.7'
 
 networks:
     laravel:
+        driver: bridge
         
 services:
     php:
@@ -31,6 +32,7 @@ services:
         depends_on:
             - php
             - mysql
+            - elasticsearch
         restart: unless-stopped
         networks:
             - laravel
@@ -80,9 +82,19 @@ services:
             - laravel
             
     elasticsearch:
-      image: elasticsearch:7.13.1
-      environment:
-          - "discovery.type=single-node"
-          - "bootstrap.memory_lock=true"
-      ports:
-          - "9200:9200"
+        image: elasticsearch:7.13.1
+        environment:
+            - "discovery.type=single-node"
+            - cluster.routing.allocation.disk.threshold_enabled=false
+            - "bootstrap.memory_lock=true"
+            - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+        volumes:
+            - ./elasticsearch:/usr/share/elasticsearch/data
+        ports:
+            - "9200:9200"
+        networks:
+            - laravel

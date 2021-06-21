@@ -5,6 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
+use App\Contracts\SearchRepositoryContract;
+use App\Repositories\SqlSearchRepository;
+use App\Repositories\ElasticSearchRepository;
 
 class SearchServiceProvider extends ServiceProvider
 {
@@ -15,7 +18,13 @@ class SearchServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->bindSearchClient();
+        if (! config('services.elasticsearch.enabled')) {
+            return $this->app->bind(SearchRepositoryContract::class, fn () => new SqlSearchRepository());
+        }
+        $this->app->bind(SearchRepositoryContract::class, fn () => new ElasticSearchRepository(
+            $this->app->make(Client::class)
+        ));
     }
 
     /**
