@@ -78,15 +78,4 @@ class PostObserver
             dispatch(new AddElasticsearchIndexJob($post));
         }
     }
-
-    /**
-     * Handle the Post "force deleted" event.
-     *
-     * @param  \App\Models\Post  $post
-     * @return void
-     */
-    public function forceDeleted(Post $post)
-    {
-        //
-    }
 }

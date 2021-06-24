@@ -3,11 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/test/laravel/elasticsearch-with-laravel/.env.testing</file>
+            <file>file:/home/test/laravel/elasticsearch-with-laravel/tests/Feature/HomePageTest.php</file>
+            <file>file:/home/test/laravel/elasticsearch-with-laravel/tests/Feature/PostTest.php</file>
+            <file>file:/home/test/laravel/elasticsearch-with-laravel/phpunit.xml</file>
             <file>file:/home/test/laravel/elasticsearch-with-laravel/.env</file>
-            <file>file:/home/test/laravel/elasticsearch-with-laravel/app/Models/Post.php</file>
-            <file>file:/home/test/laravel/elasticsearch-with-laravel/app/Http/Controllers/HomeController.php</file>
-            <file>file:/home/test/laravel/elasticsearch-with-laravel/app/Observers/PostObserver.php</file>
-            <file>file:/home/test/laravel/elasticsearch-with-laravel/app/Providers/SearchServiceProvider.php</file>
+            <file>file:/home/test/laravel/elasticsearch-with-laravel/tests/Feature/TrashTest.php</file>
+            <file>file:/home/test/laravel/elasticsearch-with-laravel/docker-compose.yml</file>
+            <file>file:/home/test/laravel/elasticsearch-with-laravel/tests/Feature/SearchTest.php</file>
             <file>file:/home/test/laravel/elasticsearch-with-laravel/routes/web.php</file>
         </group>
     </open-files>
