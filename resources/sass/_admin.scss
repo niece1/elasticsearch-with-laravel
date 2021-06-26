@@ -326,3 +326,24 @@
         }
     }
 }
+
+/* Footer styles */
+
+footer#dashboard-footer {
+    min-height: initial;
+    width: 100%;
+    text-align: center;
+    background-color: #f5f8fa;
+    .dashboard-footer-wrapper {
+        width: 90%;
+        margin: auto;
+        p {
+            font-size: 1.6rem;
+            color: #9c9c9c;
+            padding: 15px 0;
+            a {
+                color: #e71d43;
+            }
+        }
+    }
+}

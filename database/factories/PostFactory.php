@@ -27,6 +27,7 @@ class PostFactory extends Factory
             'title' => $this->faker->unique()->text(20),
             'body' => $this->faker->text(7000),
             'slug' => $this->faker->text(20),
+            'viewed' => $this->faker->numberBetween(1, 1000),
             'published' => true,
             'time_to_read' => $this->faker->numberBetween(1, 10),
             'user_id' => function () {

@@ -39,7 +39,9 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StorePostRequest  $request
+     * @param  \App\Services\SlugService $slugService
+     * @param  \App\Services\PostImageUploadService $postImageUploadService
      * @return \Illuminate\Http\Response
      */
     public function store(
@@ -79,8 +81,10 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdatePostRequest  $request
      * @param  int  $post
+     * @param  \App\Services\SlugService $slugService
+     * @param  \App\Services\PostImageUploadService $postImageUploadService
      * @return \Illuminate\Http\Response
      */
     public function update(

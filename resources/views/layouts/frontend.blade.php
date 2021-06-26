@@ -71,14 +71,98 @@
         <!-- /.Main -->
 
         <!-- Footer -->
-        <footer id="dashboard-footer">
-            <div class="dashboard-footer-wrapper">
-                <p>
-                    <a href="{{ url('/') }}">elasticsearch-with-laravel </a>
-                    Made with love for a better web
-                </p>
-            </div>
-        </footer>
+        <footer>
+                <div class="footer_wrapper_upper">
+                    <div class="footer_about">
+                        <a href="{{ url('/') }}" class="logo-footer">Elastic</a>
+                        <p>Авиационный новостной портал, освещающий 
+                            события в мире гражданской авиации.
+                        </p>
+                        <a href="#">
+                            <span>Читать далее</span>
+                        </a>
+                    </div>
+                    <div class="footer_links">
+                        <h5>Категории</h5>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span>Проишествия</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Скидки</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Эрбас</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Боинг</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Авиасалон</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer_links">
+                        <h5>Меню</h5>
+                        <ul>
+                            <li>
+                                <a href="{{ url('/') }}">
+                                    <span>На главную</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>О нас</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>Контакты</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Popular posts-->
+                    <div class="popular_posts">
+                        @include('layouts.includes.popular-posts')
+                    </div>
+                    <!-- /.Popular posts -->
+                </div>
+                <div class="footer_wrapper_down">
+                    
+                    <div class="footer_copyright">
+                        <p>&#169; {{ date('Y') }} Airinsider</p>
+                        <p>
+                            Noa Digital. Made with 
+                            <button class="iconbutton">
+                                <svg class="icon icon--heart">
+                                <use xlink:href="#icon-heart"></use>
+                                </svg>
+                            </button>
+                            for a better web.
+                        </p>
+                    </div>
+                    <div class="footer_newsletter">
+                        <h5>Подпишитесь на новости</h5>
+                        <!-- Vue component -->
+                        <subscription></subscription>
+                        <p>Следите за новостями:</p>
+                        <a href="#" id="facebook">fb</a>
+                        <a href="#" id="twitter">tw</a>
+                        <a href="#">pt</a>
+                    </div>
+                </div>
+            </footer>   
          <!-- /.Footer-->
          
          <!--Scripts -->
