@@ -102,7 +102,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource to trash.
      *
-     * @param  \App\Post  $post
+     * @param  int  $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)

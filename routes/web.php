@@ -6,6 +6,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\TrashController;
+use App\Http\Controllers\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ use App\Http\Controllers\TrashController;
 //Frontend
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('search', [SearchController::class, 'search'])->name('search');
+Route::post('subscriptions', SubscriptionController::class);
 
 //Admin
 Route::group(['prefix' => 'admin'], function () {

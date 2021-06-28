@@ -9,7 +9,7 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Image  $image
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
     public function delete($id, Image $image)

@@ -75,59 +75,52 @@
                 <div class="footer_wrapper_upper">
                     <div class="footer_about">
                         <a href="{{ url('/') }}" class="logo-footer">Elastic</a>
-                        <p>Авиационный новостной портал, освещающий 
-                            события в мире гражданской авиации.
-                        </p>
+                        <p>Qui iste nostrum mollitia voluptatem optio similique repellat. Assumenda maiores eos ...</p>
                         <a href="#">
-                            <span>Читать далее</span>
+                            <span>Read more</span>
                         </a>
                     </div>
                     <div class="footer_links">
-                        <h5>Категории</h5>
+                        <h5>Categories</h5>
                         <ul>
                             <li>
                                 <a href="#">
-                                    <span>Проишествия</span>
+                                    <span>Incidents</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <span>Скидки</span>
+                                    <span>Discounts</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <span>Эрбас</span>
+                                    <span>Manufacturing</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <span>Боинг</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Авиасалон</span>
+                                    <span>Ads</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                     <div class="footer_links">
-                        <h5>Меню</h5>
+                        <h5>Links</h5>
                         <ul>
                             <li>
                                 <a href="{{ url('/') }}">
-                                    <span>На главную</span>
+                                    <span>Home</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <span>О нас</span>
+                                    <span>About</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <span>Контакты</span>
+                                    <span>Contacts</span>
                                 </a>
                             </li>
                         </ul>
@@ -141,22 +134,16 @@
                 <div class="footer_wrapper_down">
                     
                     <div class="footer_copyright">
-                        <p>&#169; {{ date('Y') }} Airinsider</p>
+                        <p>&#169; {{ date('Y') }} Elastic</p>
                         <p>
-                            Noa Digital. Made with 
-                            <button class="iconbutton">
-                                <svg class="icon icon--heart">
-                                <use xlink:href="#icon-heart"></use>
-                                </svg>
-                            </button>
-                            for a better web.
+                            Noa Digital. Made with love for a better web.
                         </p>
                     </div>
-                    <div class="footer_newsletter">
-                        <h5>Подпишитесь на новости</h5>
+                    <div class="footer_newsletter" id="app">
+                        <h5>Subscribe to our newsletters:</h5>
                         <!-- Vue component -->
                         <subscription></subscription>
-                        <p>Следите за новостями:</p>
+                        <p>Follow us:</p>
                         <a href="#" id="facebook">fb</a>
                         <a href="#" id="twitter">tw</a>
                         <a href="#">pt</a>

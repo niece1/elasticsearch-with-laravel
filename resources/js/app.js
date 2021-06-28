@@ -1,4 +1,12 @@
 require('./bootstrap');
+import { createApp } from 'vue'
+import subscription from './components/subscription.vue'
+
+createApp({
+    components: {
+        subscription
+    }
+}).mount('#app');
 
 $(document).ready(function() {
     //Navigation
