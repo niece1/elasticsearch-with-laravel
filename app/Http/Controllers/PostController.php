@@ -45,9 +45,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(
-            StorePostRequest $request,
-            SlugService $slugService,
-            PostImageUploadService $postImageUploadService
+        StorePostRequest $request,
+        SlugService $slugService,
+        PostImageUploadService $postImageUploadService
     ) {
         $post = Post::create($request->all());
         $slugService->generateSlug($request, $post);
@@ -88,17 +88,17 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(
-            UpdatePostRequest $request,
-            Post $post,
-            SlugService $slugService,
-            PostImageUploadService $postImageUploadService
+        UpdatePostRequest $request,
+        Post $post,
+        SlugService $slugService,
+        PostImageUploadService $postImageUploadService
     ) {
         $post->update($request->all());
         $slugService->generateSlug($request, $post);
         $postImageUploadService->store($request, $post);
         return redirect('admin/posts');
     }
-    
+
     /**
      * Remove the specified resource to trash.
      *

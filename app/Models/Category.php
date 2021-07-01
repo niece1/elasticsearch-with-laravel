@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -17,7 +17,7 @@ class Category extends Model
     protected $fillable = [
         'title'
     ];
-    
+
     /**
      * Get posts associated with specified category
      */

@@ -21,7 +21,7 @@ class DeleteIndices extends Command
      * @var string
      */
     protected $description = 'Delete elasticsearch indices';
-    
+
     /**
      * Elasticsearch client instance.
      *

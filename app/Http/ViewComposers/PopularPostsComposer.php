@@ -7,7 +7,7 @@ use App\Models\Post;
 
 class PopularPostsComposer
 {
-    
+
      /**
       * Bind data to the view.
       *

@@ -46,7 +46,7 @@ class SearchTest extends TestCase
                 ->assertStatus(200)
                 ->assertSee('BMW');
     }
-    
+
     /** @test */
     public function search_non_existed_keyword_wont_gain_results()
     {

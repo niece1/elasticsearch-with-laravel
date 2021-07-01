@@ -1,4 +1,3 @@
-<p align="center">
 ![GitHub language count](https://img.shields.io/github/languages/count/niece1/elasticsearch-with-laravel)
 ![GitHub top language](https://img.shields.io/github/languages/top/niece1/elasticsearch-with-laravel)
 ![GitHub repo size](https://img.shields.io/github/repo-size/niece1/elasticsearch-with-laravel)
@@ -6,7 +5,6 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/niece1/elasticsearch-with-laravel)
 ![GitHub last commit](https://img.shields.io/github/last-commit/niece1/elasticsearch-with-laravel)
 ![GitHub](https://img.shields.io/github/license/niece1/elasticsearch-with-laravel)
-</p>
 
 ## Intro
 
@@ -30,7 +28,7 @@ The following are built for our web server, with their exposed ports detailed:
 - **phpmyadmin** - :8081
 - **elasticsearch** - :9200
 
-Two additional containers are included that handle Composer and NPM.
+One additional container is included that handles NPM.
 
 Depending on operating system, you may encounter rights problems so make sure you have appropriate writable rights for project folder.
 

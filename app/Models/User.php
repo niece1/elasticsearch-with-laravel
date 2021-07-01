@@ -9,7 +9,8 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -40,7 +41,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     /**
      * Get posts associated with specified user
      */
@@ -48,7 +49,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
-    
+
     /**
      * Get image associated with specified post
      */

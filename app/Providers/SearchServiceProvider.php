@@ -36,7 +36,7 @@ class SearchServiceProvider extends ServiceProvider
     {
         //
     }
-    
+
     /**
      * Bind elasticsearch client.
      *

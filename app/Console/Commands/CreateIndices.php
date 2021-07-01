@@ -21,7 +21,7 @@ class CreateIndices extends Command
      * @var string
      */
     protected $description = 'Command description';
-    
+
     /**
      * Elasticsearch client instance.
      *

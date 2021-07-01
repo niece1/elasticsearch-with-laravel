@@ -16,7 +16,7 @@ class AddElasticsearchIndexJob implements ShouldQueue
     use InteractsWithQueue;
     use Queueable;
     use SerializesModels;
-    
+
     /**
      * Post model.
      *

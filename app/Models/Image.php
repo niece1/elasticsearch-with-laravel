@@ -10,7 +10,7 @@ class Image extends Model
 {
     use HasFactory;
     use DeleteImage;
-    
+
     /**
      * Get the owning imageable model.
      */

@@ -25,7 +25,7 @@ class PostObserver
     {
         $this->client = $client;
     }
-    
+
     /**
      * Handle the Post "created" event.
      *

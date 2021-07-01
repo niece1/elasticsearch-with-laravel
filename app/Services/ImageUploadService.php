@@ -14,7 +14,7 @@ use App\Traits\DeleteImage;
 abstract class ImageUploadService
 {
     use DeleteImage;
-    
+
     /**
      * Model instance.
      *
@@ -31,7 +31,7 @@ abstract class ImageUploadService
     {
         $this->model = app($this->getModelClass());
     }
-    
+
     /*
      * Get model namespace
      *

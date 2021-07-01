@@ -18,7 +18,7 @@ class DeleteElasticsearchIndexJob implements ShouldQueue
     use InteractsWithQueue;
     use Queueable;
     use SerializesModels;
-    
+
     /**
      * Post model.
      *
