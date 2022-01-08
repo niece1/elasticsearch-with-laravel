@@ -7,6 +7,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\TrashController;
 use App\Http\Controllers\SubscriptionController;
+use Illuminate\Http\Request;
+use App\Models\Customer;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +35,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('trash', [TrashController::class, 'index'])->name('trash.index');
     Route::delete('delete/{id}', [TrashController::class, 'destroy'])->name('trash.destroy');
     Route::post('restore/{id}', [TrashController::class, 'restore'])->name('trash.restore');
+});
+
+Route::get('/customer', function (Request $request) {
+    $customers = Customer::search($request->q)->get();
+    dd($customers);
+});
+
+Route::get('/single-customer', function (Request $request) {
+    Customer::find(3)->delete();
+    $customers = Customer::search($request->q)->get();
+    dd($customers);
 });

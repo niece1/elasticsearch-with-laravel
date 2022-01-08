@@ -5,6 +5,7 @@ namespace App;
 use Laravel\Scout\Engines\Engine;
 use Laravel\Scout\Builder;
 use Elasticsearch\Client;
+use Illuminate\Support\Arr;
 
 class ElasticsearchEngine extends Engine
 {
@@ -42,6 +43,14 @@ class ElasticsearchEngine extends Engine
      */
     public function delete($models)
     {
+        $models->each(function ($model) {
+            $params = [
+                'index' => $model->searchableAs(),
+                'type' => $model->searchableAs(),
+                'id' => $model->id,
+            ];
+            $this->client->delete($params);
+        });
     }
 
     /**
@@ -52,6 +61,7 @@ class ElasticsearchEngine extends Engine
      */
     public function search(Builder $builder)
     {
+        return $this->defineSearch($builder);
     }
 
     /**
@@ -86,6 +96,13 @@ class ElasticsearchEngine extends Engine
      */
     public function map(Builder $builder, $results, $model)
     {
+        if (count($hits = Arr::get($results, 'hits.hits')) === 0) {
+            return $model->newCollection();
+        }
+        return $model->getScoutModelsByIds(
+            $builder,
+            collect($hits)->pluck('_id')->values()->all()
+        );
     }
 
     /**
@@ -139,5 +156,26 @@ class ElasticsearchEngine extends Engine
      */
     public function deleteIndex($name)
     {
+        //
+    }
+
+    protected function defineSearch(Builder $builder, array $options = [])
+    {
+        $params = array_merge_recursive([
+            'index' => $builder->model->searchableAs(),
+            'type' => $builder->model->searchableAs(),
+            'body' => [
+                'from' => 0,
+                'size' => 100,
+                'query' => [
+                    'multi_match' => [
+                        'query' => $builder->query,
+                        'fields' => ['name', 'username', 'email'],
+                        'type' => 'phrase_prefix'
+                    ]
+                ]
+            ]
+        ], $options);
+        return $this->client->search($params);
     }
 }
