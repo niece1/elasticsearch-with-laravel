@@ -4,9 +4,17 @@ namespace App;
 
 use Laravel\Scout\Engines\Engine;
 use Laravel\Scout\Builder;
+use Elasticsearch\Client;
 
 class ElasticsearchEngine extends Engine
 {
+	protected $client;
+
+	public function __construct(Client $client)
+    {
+    	$this->client = $client;
+    }
+
     /**
      * Update the given model in the index.
      *
@@ -15,6 +23,15 @@ class ElasticsearchEngine extends Engine
      */
     public function update($models)
     {
+    	$models->each(function ($model) {
+    		$params = [
+    			'index' => $model->searchableAs(),
+    			'type' => $model->searchableAs(),
+    			'id' => $model->id,
+    			'body' => $model->toSearchableArray(),
+    		];
+    		$this->client->index($params);
+    	});
     }
 
     /**
@@ -99,7 +116,7 @@ class ElasticsearchEngine extends Engine
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return void
      */
-    abstract public function flush($model)
+    public function flush($model)
     {
     }
 
@@ -110,7 +127,7 @@ class ElasticsearchEngine extends Engine
      * @param  array  $options
      * @return mixed
      */
-    abstract public function createIndex($name, array $options = [])
+    public function createIndex($name, array $options = [])
     {
     }
 
@@ -120,7 +137,7 @@ class ElasticsearchEngine extends Engine
      * @param  string  $name
      * @return mixed
      */
-    abstract public function deleteIndex($name)
+    public function deleteIndex($name)
     {
     }
 }

@@ -10,4 +10,18 @@ class Customer extends Model
 {
     use HasFactory;
     use Searchable;
+
+    /**
+     * Define table fields to be searchable.
+     *
+     * @return array
+     */
+    public function toSearchArray()
+    {
+        return [
+            'name' => $this->name,
+            'username' => $this->username,
+            'email' => $this->email,
+        ];
+    }
 }

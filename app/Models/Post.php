@@ -6,13 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Image;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Traits\Searchable;
 
 class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    use Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -92,18 +90,5 @@ class Post extends Model
     public function getIfPublishedAttribute()
     {
         return $this->published == 0 ? 'No' : 'Yes';
-    }
-
-    /**
-     * Define table fields to be searchable.
-     *
-     * @return array
-     */
-    public function toSearchArray()
-    {
-        return [
-            'title' => $this->title,
-            'body' => $this->body,
-        ];
     }
 }
