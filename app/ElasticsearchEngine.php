@@ -25,12 +25,10 @@ class ElasticsearchEngine extends Engine
     public function update($models)
     {
     	$models->each(function ($model) {
-    		$params = [
-    			'index' => $model->searchableAs(),
-    			'type' => $model->searchableAs(),
+    		$params = $this->defineBodyRequest($model, [
     			'id' => $model->id,
     			'body' => $model->toSearchableArray(),
-    		];
+    		]);
     		$this->client->index($params);
     	});
     }
@@ -44,11 +42,9 @@ class ElasticsearchEngine extends Engine
     public function delete($models)
     {
         $models->each(function ($model) {
-            $params = [
-                'index' => $model->searchableAs(),
-                'type' => $model->searchableAs(),
+            $params = $this->defineBodyRequest($model, [
                 'id' => $model->id,
-            ];
+            ]);
             $this->client->delete($params);
         });
     }
@@ -161,9 +157,7 @@ class ElasticsearchEngine extends Engine
 
     protected function defineSearch(Builder $builder, array $options = [])
     {
-        $params = array_merge_recursive([
-            'index' => $builder->model->searchableAs(),
-            'type' => $builder->model->searchableAs(),
+        $params = array_merge_recursive($this->defineBodyRequest($builder->model), [
             'body' => [
                 'from' => 0,
                 'size' => 100,
@@ -177,5 +171,13 @@ class ElasticsearchEngine extends Engine
             ]
         ], $options);
         return $this->client->search($params);
+    }
+
+    protected function defineBodyRequest($model, array $options = [])
+    {
+        return array_merge_recursive([
+            'index' => $model->searchableAs(),
+            'type' => $model->searchableAs(),
+        ], $options);
     }
 }
