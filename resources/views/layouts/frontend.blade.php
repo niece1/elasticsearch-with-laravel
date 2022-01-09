@@ -35,9 +35,6 @@
                         <li class="sub-menu">
                             <a href="/">Home</a>
                         </li>
-                        <li class="sub-menu">
-                            <a href="/admin/posts">Admin</a>
-                        </li>
                         <li>
                             <a href="javascript:void(0)" id="search">
                                 <i class="fas fa-search"></i>
@@ -56,7 +53,7 @@
                 <span class="close-search">&times;</span>
                 <form action="{{ route('search') }}" method="GET"  class="search-input" autocomplete="off">
                     <div class="input-wrapper" data-text="">
-                        <input type="text" name="keyword" value="{{ request()->input('keyword') }}" id="search" placeholder="Поиск..." required>
+                        <input type="text" name="q" value="{{ request()->input('q') }}" id="search" placeholder="Search..." required>
                     </div>
                 </form>
             </div>
@@ -125,11 +122,6 @@
                             </li>
                         </ul>
                     </div>
-                    <!--Popular posts-->
-                    <div class="popular_posts">
-                        @include('layouts.includes.popular-posts')
-                    </div>
-                    <!-- /.Popular posts -->
                 </div>
                 <div class="footer_wrapper_down">
                     
@@ -138,15 +130,6 @@
                         <p>
                             Noa Digital. Made with love for a better web.
                         </p>
-                    </div>
-                    <div class="footer_newsletter" id="app">
-                        <h5>Subscribe to our newsletters:</h5>
-                        <!-- Vue component -->
-                        <subscription></subscription>
-                        <p>Follow us:</p>
-                        <a href="#" id="facebook">fb</a>
-                        <a href="#" id="twitter">tw</a>
-                        <a href="#">pt</a>
                     </div>
                 </div>
             </footer>   

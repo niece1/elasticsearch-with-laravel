@@ -175,7 +175,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ElasticsearchServiceProvider::class,
-        App\Providers\ViewComposerServiceProvider::class,
 
     ],
 

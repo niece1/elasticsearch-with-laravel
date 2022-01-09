@@ -6,6 +6,7 @@ use Laravel\Scout\Engines\Engine;
 use Laravel\Scout\Builder;
 use Elasticsearch\Client;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
 
 class ElasticsearchEngine extends Engine
 {
@@ -70,6 +71,10 @@ class ElasticsearchEngine extends Engine
      */
     public function paginate(Builder $builder, $perPage, $page)
     {
+        return $this->defineSearch($builder, [
+            'from' => ($page - 1) * $perPage,
+            'size' => 10
+        ]);
     }
 
     /**
@@ -80,6 +85,7 @@ class ElasticsearchEngine extends Engine
      */
     public function mapIds($results)
     {
+        return collect(Arr::get($results, 'hits.hits'))->pluck('_id')->values();
     }
 
     /**
@@ -121,6 +127,7 @@ class ElasticsearchEngine extends Engine
      */
     public function getTotalCount($results)
     {
+        return Arr::get($results, 'hits.total', 0);
     }
 
     /**
@@ -131,6 +138,15 @@ class ElasticsearchEngine extends Engine
      */
     public function flush($model)
     {
+        //If you use this command for the first time(on server for example) it may error,
+        //because you need initial index
+        $this->client->indices()->delete([
+            'index' => $model->searchableAs()
+        ]);
+        //In Elasticsearch one should recreate index while flushing in (in contradistinction to Algolia)
+        Artisan::call('indices:create', [
+            'model' => get_class($model)
+        ]);
     }
 
     /**
@@ -163,8 +179,8 @@ class ElasticsearchEngine extends Engine
                 'size' => 100,
                 'query' => [
                     'multi_match' => [
-                        'query' => $builder->query,
-                        'fields' => ['name', 'username', 'email'],
+                        'query' => $builder->query ?? '',
+                        'fields' => $this->defineSearchableFields($builder->model),
                         'type' => 'phrase_prefix'
                     ]
                 ]
@@ -179,5 +195,13 @@ class ElasticsearchEngine extends Engine
             'index' => $model->searchableAs(),
             'type' => $model->searchableAs(),
         ], $options);
+    }
+
+    protected function defineSearchableFields($model)
+    {
+        if (!method_exists($model, 'searchableFields')) {
+            return [];
+        }
+        return $model->searchableFields();
     }
 }

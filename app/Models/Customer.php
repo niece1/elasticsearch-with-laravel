@@ -12,7 +12,7 @@ class Customer extends Model
     use Searchable;
 
     /**
-     * Define table fields to be searchable.
+     * Define fields to be searched on.
      *
      * @return array
      */
@@ -23,5 +23,14 @@ class Customer extends Model
             'username' => $this->username,
             'email' => $this->email,
         ];
+    }
+    /**
+     * Define table fields to be used in index on the whole.
+     *
+     * @return array
+     */
+    public function searchableFields()
+    {
+        return ['username'];
     }
 }

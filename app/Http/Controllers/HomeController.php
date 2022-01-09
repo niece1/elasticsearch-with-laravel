@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Customer;
 
 class HomeController extends Controller
 {
@@ -13,10 +13,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['image', 'category', 'user'])
-                ->where('published', 1)
-                ->orderBy('id', 'desc')
-                ->paginate(12);
-        return view('frontend.index', compact('posts'));
+        $customers = Customer::all();
+
+        return view('frontend.index', compact('customers'));
     }
 }
