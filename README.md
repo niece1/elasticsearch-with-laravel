@@ -8,7 +8,7 @@
 
 ## Intro
 
-This repo is an example of basic search functionality using Elasticsearch and Laravel. No extra packages. Only custom code.
+This repo is an example of basic search functionality using Elasticsearch and Laravel. **Main** branch features project without third party packages, while **scout** branch utilizes laravel/scout.
 
 ## Usage
 
