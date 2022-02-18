@@ -10,11 +10,22 @@ use Illuminate\Support\Facades\Artisan;
 
 class ElasticsearchEngine extends Engine
 {
-	protected $client;
+    /**
+     * Elasticsearch client instance.
+     *
+     * @var object
+     */
+    protected $client;
 
-	public function __construct(Client $client)
+    /**
+     * Create a new engine instance.
+     *
+     * @param Client $client
+     * @return void
+     */
+    public function __construct(Client $client)
     {
-    	$this->client = $client;
+        $this->client = $client;
     }
 
     /**
@@ -25,13 +36,13 @@ class ElasticsearchEngine extends Engine
      */
     public function update($models)
     {
-    	$models->each(function ($model) {
-    		$params = $this->defineBodyRequest($model, [
-    			'id' => $model->id,
-    			'body' => $model->toSearchableArray(),
-    		]);
-    		$this->client->index($params);
-    	});
+        $models->each(function ($model) {
+            $params = $this->defineBodyRequest($model, [
+                'id' => $model->id,
+                'body' => $model->toSearchableArray(),
+            ]);
+            $this->client->index($params);
+        });
     }
 
     /**
@@ -117,6 +128,7 @@ class ElasticsearchEngine extends Engine
      */
     public function lazyMap(Builder $builder, $results, $model)
     {
+        //
     }
 
     /**
@@ -158,6 +170,7 @@ class ElasticsearchEngine extends Engine
      */
     public function createIndex($name, array $options = [])
     {
+        //
     }
 
     /**
@@ -171,6 +184,13 @@ class ElasticsearchEngine extends Engine
         //
     }
 
+    /**
+     * Define criteria to search.
+     *
+     * @param  \Laravel\Scout\Builder  $builder
+     * @param  array  $options
+     * @return mixed
+     */
     protected function defineSearch(Builder $builder, array $options = [])
     {
         $params = array_merge_recursive($this->defineBodyRequest($builder->model), [
@@ -189,6 +209,13 @@ class ElasticsearchEngine extends Engine
         return $this->client->search($params);
     }
 
+    /**
+     * Define search body.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  array  $options
+     * @return mixed
+     */
     protected function defineBodyRequest($model, array $options = [])
     {
         return array_merge_recursive([
@@ -197,6 +224,12 @@ class ElasticsearchEngine extends Engine
         ], $options);
     }
 
+    /**
+     * Define fields to search.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @return mixed
+     */
     protected function defineSearchableFields($model)
     {
         if (!method_exists($model, 'searchableFields')) {

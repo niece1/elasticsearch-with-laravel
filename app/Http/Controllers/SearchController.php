@@ -15,7 +15,7 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $customers = Customer::search($request->q)->get();
-        
+
         return view('frontend.search', compact('customers'));
     }
 }

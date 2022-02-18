@@ -47,15 +47,14 @@ class CreateIndices extends Command
     /**
      * Execute the console command.
      *
-     * @param \App\Models\Post $post
-     * @return int
+     * @return object
      */
     public function handle()
     {
         if (!class_exists($model = $this->argument('model'))) {
             return $this->error("{$model} not found");
         }
-        $model = new $model;
+        $model = new $model();
         try {
             $this->client->indices()->create([
                 'index' => $model->searchableAs(),
@@ -75,6 +74,11 @@ class CreateIndices extends Command
         }
     }
 
+    /**
+     * Add filter array to use while creating indices.
+     *
+     * @return array
+     */
     protected function filters()
     {
         return [
@@ -86,6 +90,11 @@ class CreateIndices extends Command
         ];
     }
 
+    /**
+     * Add array of analyzers to use while creating indices.
+     *
+     * @return array
+     */
     protected function analyzers()
     {
         return [
